@@ -10,8 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "libft.h"
+#include "libft.h"
 #include <stdlib.h>
+
+int	ft_freesplit(char **res)
+{
+	int	i;
+
+	i = 0;
+	while (res[i])
+	{
+		free(res[i]);
+		i++;
+	}
+	free(res);
+	return (1);
+}
 
 int	ft_parts(char *s, char c)
 {
@@ -30,6 +44,7 @@ int	ft_parts(char *s, char c)
 	}
 	return (parts);
 }
+
 void	part_cpy(char *dst, char *src, char c)
 {
 	int	i;
@@ -42,7 +57,8 @@ void	part_cpy(char *dst, char *src, char c)
 	}
 	dst[i] = '\0';
 }
-void	part(char **res, char *s, char c)
+
+int	part(char **res, char *s, char c)
 {
 	int	i;
 	int	x;
@@ -60,11 +76,14 @@ void	part(char **res, char *s, char c)
 			while ((s[i + x] != c) && s[i + x])
 				x++;
 			res[part] = (char *)malloc(sizeof(char) * (x + 1));
+			if (res[part] == NULL)
+				return (ft_freesplit(res));
 			part_cpy(res[part], s + i, c);
 			i = i + x;
 			part++;
 		}
 	}
+	return (0);
 }
 
 char	**ft_split(char const *s, char c)
@@ -73,8 +92,11 @@ char	**ft_split(char const *s, char c)
 	int		parts;
 
 	parts = ft_parts((char *)s, c);
-	res = (char **)malloc(sizeof(char *) * (parts + 1));
+	res = (char **)ft_calloc(parts + 1, sizeof(char *));
+	if (res == NULL)
+		return (NULL);
 	res[parts] = 0;
-	part(res, (char *)s, c);
+	if (part(res, (char *)s, c))
+		res = NULL;
 	return (res);
 }
