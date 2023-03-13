@@ -1,4 +1,5 @@
 #include "libft.h"
+#include <stdio.h>
 
 char	*ft_strchr(const char *s, int c)
 {
@@ -13,3 +14,10 @@ char	*ft_strchr(const char *s, int c)
 	}
 	return ((char *)((unsigned long)(s + i) *(!c)));
 }
+
+/*
+void	main()
+{
+	printf("%s \n", ft_strchr("teste", '\0'));
+}
+*/

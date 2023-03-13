@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 int	ft_atoi(const char *nptr)
 {
 	int	nb;
@@ -25,3 +27,10 @@ int	ft_atoi(const char *nptr)
 		nb = -nb;
 	return (nb);
 }
+
+/*
+void	main()
+{
+	printf("%d\n", ft_atoi("\010 9"));
+}
+*/
