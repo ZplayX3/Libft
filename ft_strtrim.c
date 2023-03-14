@@ -6,7 +6,7 @@
 /*   By: event <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 12:33:56 by event             #+#    #+#             */
-/*   Updated: 2023/03/14 12:33:57 by event            ###   ########.fr       */
+/*   Updated: 2023/03/14 13:29:08 by event            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		i++;
 	start = i;
 	i = ft_strlen((char *)s1) - 1;
-	while (is_in(s1[i], set))
+	while (is_in(s1[i], set) && i >= 0)
 		i--;
 	end = i;
 	return (ft_substr(s1, start, end - start + 1));
