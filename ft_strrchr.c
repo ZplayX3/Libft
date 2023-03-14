@@ -7,6 +7,7 @@ char	*ft_strrchr(const char *s, int c)
 
 	x = NULL;
 	i = 0;
+	c %= 256;
 	while (s[i] != 0)
 	{
 		if (s[i] == (unsigned char)c)

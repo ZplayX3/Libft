@@ -3,15 +3,28 @@
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*dst;
+	size_t	size;
 
-	if (len < (unsigned int)ft_strlen((char *)s) - start)
-		dst = malloc((len + 1) * sizeof(char));
+	if ((unsigned int)ft_strlen(s) < start)
+		size = 0;
+	else if (len < (unsigned int)ft_strlen((char *)s) - start)
+		size = len;
 	else
-		dst = malloc((unsigned int)ft_strlen((char *)s) - start + 1);
+		size = (unsigned int)ft_strlen((char *)s) - start;
+	dst = malloc(size + 1);
 	if (dst == 0)
 		return (NULL);
 	if (start >= (unsigned int)ft_strlen((char *)s))
-		return (ft_strdup(""));
-	ft_strlcpy(dst, s + start, len + 1);
+	{
+		*dst = 0;
+		return (dst);
+	}
+	ft_strlcpy(dst, s + start, size + 1);
 	return (dst);
 }
+/*
+void	main()
+{
+	printf("%s \n", ft_substr("hola", 0, -1));
+}
+*/
